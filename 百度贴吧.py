@@ -1,6 +1,8 @@
-/*
+"""
 cron: 20 15 * * *
-*/
+变量baiduboou
+只要cookie BDUSS部分
+"""
 # -*- coding: utf8 -*-
 from requests import session, post
 from hashlib import md5
@@ -8,9 +10,26 @@ from random import random
 from time import sleep
 import pretty_errors
 
+import os
+
+def get_api_key():
+    api_key = os.getenv('baiduboou')
+    if api_key:
+        return api_key
+    else:
+        raise ValueError("API_KEY环境变量未设置")
+
+if __name__ == "__main__":
+    try:
+        key = get_api_key()
+       
+    except ValueError as e:
+        print(e)
+        
+
 class Tieba():
     def __init__(self, BDUSS, STOKEN):
-        self.BDUSS = 'VIbXMweEV0RVdVeXFRR1JIZ1llc2JzRHJpUHotOXprUUt3b2JBVEtiN1FsdlJuRUFBQUFBJCQAAAAAAQAAAAEAAADIbDFaMTEzd2VoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAJzWfQCc1nRH'
+        self.BDUSS = key
         self.STOKEN = STOKEN
         self.success_list = []
         self.result = {}
