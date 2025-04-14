@@ -1,3 +1,6 @@
+/*
+cron: 20 15 * * *
+*/
 # -*- coding: utf8 -*-
 from requests import session, post
 from hashlib import md5
